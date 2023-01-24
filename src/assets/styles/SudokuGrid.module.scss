@@ -1,0 +1,213 @@
+@import url("variables.scss");
+
+.SudokuGrid {
+
+  border: 3px solid black;
+  user-select: none;
+  cursor: pointer;
+
+  .row {
+    display: flex;
+
+    &:nth-child(-3n+6) .cell {
+      border-bottom: 3px solid black;
+    }
+
+    @for $i from 1 through 9 {
+      //if selected cell connect with bottom selected cell
+      &:has(+.row .selected:nth-child(#{$i})) {
+        .selected:nth-child(#{$i}):after {
+          border-bottom: none;
+        }
+      }
+    }
+
+    @for $i from 1 through 9 {
+      //if selected cell connect with top selected cell
+      &:has(>.selected:nth-child(#{$i})) + .row:has(>.selected:nth-child(#{$i})) {
+        .selected:nth-child(#{$i}):after {
+          border-top: none;
+        }
+      }
+    }
+
+
+    .cell {
+      width: 60px;
+      height: 60px;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid black;
+      border-collapse: collapse;
+      font-size: 40px;
+      font-weight: bold;
+      color: #1d51e5;
+
+      &:nth-child(-3n+6) {
+        border-right: 3px solid black;
+      }
+
+      &.given {
+        color: black;
+      }
+
+      &.wrong {
+        color: #ff5151;
+      }
+
+      &.selected:after {
+        width: inherit;
+        height: inherit;
+        position: absolute;
+        content: "";
+        z-index: -1;
+        border: 5px solid #4ca4ff;
+        box-sizing: border-box;
+      }
+
+      &:before {
+        width: inherit;
+        height: inherit;
+        position: absolute;
+        content: "";
+        z-index: -1;
+      }
+
+      &.white:before {
+        background-color: white;
+      }
+
+      &.lightcoral:before {
+        background-color: lightcoral;
+      }
+
+      &.navajowhite:before {
+        background-color: navajowhite;
+      }
+
+      &.gainsboro:before {
+        background-color: gainsboro;
+      }
+
+      &.lightgreen:before {
+        background-color: lightgreen;
+      }
+
+      &.skyblue:before {
+        background-color: skyblue;
+      }
+
+      &.burlywood:before {
+        background-color: burlywood;
+      }
+
+      &.pink:before {
+        background-color: pink;
+      }
+
+      &.plum:before {
+        background-color: plum;
+      }
+
+      &.lemonchiffon:before {
+        background-color: lemonchiffon;
+      }
+
+      &.selected + .selected:after { //if selected cell connect with left selected cell
+        border-left: none;
+      }
+
+      &.selected:has(+.selected):after { //if selected cell connect with right selected cell
+        border-right: none;
+      }
+
+      .cornerPencilMarks {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        font-size: 13px;
+      }
+
+      .cornerPencilMarks span {
+        color: #4ca4ff;
+        height: 33.333333%;
+        flex: 1 1 33.333333%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+
+      .centrePencilMarks {
+        position: absolute;
+        font-size: 13px;
+      }
+
+    }
+  }
+}
+
+
+@media (max-width: 1024px) {
+  .cell {
+    width: 55px;
+    height: 55px;
+    display: flex;
+    font-size: 35px;
+
+    .centrePencilMarks {
+      font-size: 17px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .SudokuGrid .row .cell {
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+
+    .centrePencilMarks {
+      font-size: 15px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .SudokuGrid {
+
+    .row {
+      &:nth-child(-3n+6) .cell {
+        border-bottom: 2px solid black;
+      }
+
+      .cell {
+        width: 39px;
+        height: 39px;
+        font-size: 25px;
+
+        .centrePencilMarks {
+          font-size: 11px;
+        }
+
+        &:nth-child(-3n+6) {
+          border-right: 2px solid black;
+        }
+
+        &.selected:after {
+          border: 4px solid #4ca4ff;
+        }
+      }
+    }
+  }
+}
+
+
+
+
+

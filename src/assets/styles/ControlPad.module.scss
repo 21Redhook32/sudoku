@@ -1,0 +1,157 @@
+@import "variables";
+
+.ControlPad {
+  --button-size: 70px;
+  --controls-margin: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5px 20px;
+  user-select: none;
+
+  .button {
+    width: var(--button-size);
+    height: var(--button-size);
+    font-size: 35px;
+    font-weight: bold;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 3px;
+    background-clip: content-box;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      svg {
+        width: 40px;
+        height: 40px;
+        fill: $main-color;
+      }
+    }
+
+    &:hover {
+      background-color: #dedede;
+    }
+
+    .color {
+      width: 70%;
+      height: 70%;
+      border: 1px solid black;
+      border-radius: 0.4rem;
+    }
+  }
+
+  .mainControls {
+    display: flex;
+    .inputButtons {
+      width: calc(var(--button-size) * 3);
+      display: flex;
+      flex-wrap: wrap;
+      margin-right: var(--controls-margin);
+
+      .button {
+        background-color: $main-color;
+        color: white;
+        position: relative;
+
+        span.centre {
+          font-size: 20px;
+        }
+
+        span.corner {
+          font-size: 20px;
+          position: absolute;
+          top: 10px;
+          right: 10px;
+        }
+
+        &:hover {
+          background-color: #a087d7;
+        }
+      }
+
+      .icon svg{
+        fill: white;
+      }
+
+      .button:nth-last-child(1){
+        margin-left: auto;
+        width: calc(var(--button-size) * 2);
+      }
+    }
+    .toolButtons {
+      display: flex;
+      flex-direction: column;
+
+      .selected {
+        background-color: $main-color;
+        &.button .icon svg{
+          fill: white;
+        }
+      }
+    }
+  }
+
+  .auxControls {
+    display: flex;
+    margin-top: var(--controls-margin);
+
+    .button:nth-last-child(1){
+      margin-left: var(--controls-margin);
+    }
+  }
+
+
+}
+
+@media (max-width: 1024px) {
+  .ControlPad {
+    --button-size: 65px;
+    --controls-margin: 6px;
+    .button {
+      font-size: 30px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .ControlPad {
+    --button-size: 60px;
+    --controls-margin: 0px;
+    flex-direction: row;
+
+    .auxControls {
+      flex-direction: column;
+    }
+
+    .button {
+      font-size: 30px;
+
+      .icon svg {
+        width: 40px;
+        height: 40px;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .ControlPad {
+    --button-size: 55px;
+
+    .button {
+      font-size: 25px;
+
+      .icon svg {
+        width: 35px;
+        height: 35px;
+      }
+    }
+  }
+}
