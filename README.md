@@ -1,4 +1,4 @@
 # Sudoku app
 
-Check [Demo]([https://github.com/facebook/create-react-app](http://redhook.byethost24.com/sudokuapp/)).
+Check [Demo]([http://redhook.byethost24.com/sudokuapp/]).
 
